@@ -1,7 +1,7 @@
 // Load the shared library
-library identifier: 'my-shared-library@master', retriever: modernSCM([
+library identifier: 'my-shared-library@main', retriever: modernSCM([
     $class: 'GitSCMSource',
-    remote: 'https://github.com/your-repo/my-shared-library.git',
+    remote: 'https://github.com/bruezr/libtest.git',
     credentialsId: 'your-credentials-id'
 ])
 
