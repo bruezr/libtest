@@ -1,7 +1,11 @@
-def sayHello(String name) {
-    return "Hello ${name}"
+
+def firstFunction(String lastname) {
+    testClosure(lastname) {
+        echo "Hello ${lastname}"
+    }
 }
 
-def sayGoodbye(String name) {
-    return "Goodbye ${name}"
+def testClosure(String name, Closure body) {
+    body()
+    return "Hello ${name}"
 }
