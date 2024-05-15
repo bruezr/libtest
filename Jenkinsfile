@@ -1,8 +1,7 @@
 // Load the shared library
 library identifier: 'my-shared-library@lib', retriever: modernSCM([
     $class: 'GitSCMSource',
-    remote: 'https://github.com/bruezr/libtest.git',
-    credentialsId: 'your-credentials-id'
+    remote: 'https://github.com/bruezr/libtest.git'
 ])
 
 pipeline {
