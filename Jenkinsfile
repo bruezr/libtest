@@ -12,11 +12,8 @@ pipeline {
         stage('Greeting') {
             steps {
                 script {
-                    def name = 'Jenkins'
-                    def helloMessage = greetings.sayHello(name)
-                    def goodbyeMessage = greetings.sayGoodbye(name)
-                    echo helloMessage
-                    echo goodbyeMessage
+                    def lastname = 'Jenkins'
+                    greetings.firstFunction(lastname)
                 }
             }
         }
