@@ -1,6 +1,5 @@
 
 def firstFunction(String lastname) {
-     script.sh("ls -l")
     testClosure(lastname) {
         echo "Hello ${lastname}"
     }

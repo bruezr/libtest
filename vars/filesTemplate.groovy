@@ -1,6 +1,6 @@
 def generateCloudbuildYaml(cloudbuildTemplatePath, stepsTemplatePath, stepsData, outputPath) {
 
-    script.sh("ls -l")
+    
     def cloudbuildTemplate = new File(cloudbuildTemplatePath).text
     def stepsTemplate = new File(stepsTemplatePath).text
 
