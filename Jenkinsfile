@@ -16,7 +16,6 @@
                     greetings.firstFunction(lastname)
 
 
-                    // Example usage
                     def stepsData = [
                         [name: "gcr.io/cloud-builders/docker", args: ["build", "--build-arg", "DJANGO_ENV=\$_DJANGO_ENV", "-t", "us-east1-docker.pkg.dev/bm-gcp-d1-ingdts/cloud-run-led-dev/app-led-dev:20240530", "."], id: "build"],
                         [name: "gcr.io/cloud-builders/docker", args: ["push", "us-east1-docker.pkg.dev/bm-gcp-d1-ingdts/cloud-run-led-dev/app-led-dev:20240530"], id: "push"],
@@ -24,7 +23,8 @@
                         // Add more steps as needed
                     ]
 
-                    filesTemplate.generateCloudbuildYaml('cloudbuild_template.yaml', 'steps_cloudbuild_template.yaml', stepsData, 'output.yaml')
+                    // Call the function to copy templates to the workspace and generate YAML
+                    filesTemplate.generateCloudbuildYaml('path/to/cloudbuild_template.yaml', 'path/to/steps_template.yaml', stepsData, "${env.WORKSPACE}/output.yaml")
                 }
             }
         }
