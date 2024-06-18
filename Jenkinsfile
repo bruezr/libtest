@@ -11,6 +11,7 @@
         stage('Greeting') {
             steps {
                 script {
+                    sh "ls -l"
                     def lastname = 'Jenkins'
                     greetings.firstFunction(lastname)
 
