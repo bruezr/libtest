@@ -1,0 +1,3 @@
+  - name: ${STEP_NAME}
+    args: [${STEP_ARGS}]
+    id: ${STEP_ID}
