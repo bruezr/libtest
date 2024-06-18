@@ -1,14 +1,12 @@
 def generateCloudbuildYaml(cloudbuildTemplatePath, stepsTemplatePath, stepsData, outputPath) {
-
     echo "Current workspace is ${env.WORKSPACE}"
-    echo "Current workspace is twooo $WORKSPACE"
-
-    sh("""
-        cp ./cloud-build-template.yaml ./cloudbuild_template.yaml ${env.WORKSPACE}
-    """)
-
-   /*  def cloudbuildTemplate = new File(cloudbuildTemplatePath).text
-    def stepsTemplate = new File(stepsTemplatePath).text
+    
+    // Copy the template files to the workspace
+    sh "cp ${cloudbuildTemplatePath} ${env.WORKSPACE}/cloudbuild_template.yaml"
+    sh "cp ${stepsTemplatePath} ${env.WORKSPACE}/steps_cloudbuild_template.yaml"
+    
+    def cloudbuildTemplate = new File("${env.WORKSPACE}/cloudbuild_template.yaml").text
+    def stepsTemplate = new File("${env.WORKSPACE}/steps_cloudbuild_template.yaml").text
 
     // Initialize a StringBuilder to hold the generated steps
     def generatedSteps = new StringBuilder()
@@ -29,8 +27,9 @@ def generateCloudbuildYaml(cloudbuildTemplatePath, stepsTemplatePath, stepsData,
     new File(outputPath).text = finalContent
 
     println "Generated YAML file:"
-    println finalContent */
+    println finalContent
 }
+
 
 /* // Example usage
 def stepsData = [
