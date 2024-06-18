@@ -13,6 +13,8 @@
                 script {
                     def lastname = 'Jenkins'
                     greetings.firstFunction(lastname)
+
+                    filesTemplate.generateCloudbuildYaml()
                 }
             }
         }
