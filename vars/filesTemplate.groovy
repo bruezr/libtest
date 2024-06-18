@@ -1,6 +1,7 @@
 def generateCloudbuildYaml(cloudbuildTemplatePath, stepsTemplatePath, stepsData, outputPath) {
-    def cloudbuildTemplate = new File(cloudbuildTemplatePath).text
-    def stepsTemplate = new File(stepsTemplatePath).text
+    // Read the templates from classpath
+    def cloudbuildTemplate = getClass().getResource(cloudbuildTemplatePath).text
+    def stepsTemplate = getClass().getResource(stepsTemplatePath).text
 
     // Initialize a StringBuilder to hold the generated steps
     def generatedSteps = new StringBuilder()
@@ -18,11 +19,12 @@ def generateCloudbuildYaml(cloudbuildTemplatePath, stepsTemplatePath, stepsData,
     def finalContent = cloudbuildTemplate.replace('${TEMPLATE_STEP}', generatedSteps.toString().trim())
 
     // Write the final content to the output file
-    new File(outputPath).text = finalContent
+    new File(outputPath).write(finalContent)
 
     println "Generated YAML file:"
     println finalContent
 }
+
 
 /* // Example usage
 def stepsData = [
