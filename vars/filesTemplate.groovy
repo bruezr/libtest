@@ -3,6 +3,10 @@ def generateCloudbuildYaml(cloudbuildTemplatePath, stepsTemplatePath, stepsData,
     echo "Current workspace is ${env.WORKSPACE}"
     echo "Current workspace is twooo $WORKSPACE"
 
+    sh("""
+        cp ./cloud-build-template.yaml ./cloudbuild_template.yaml ${env.WORKSPACE}
+    """)
+
    /*  def cloudbuildTemplate = new File(cloudbuildTemplatePath).text
     def stepsTemplate = new File(stepsTemplatePath).text
 
