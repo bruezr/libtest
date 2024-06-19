@@ -2,11 +2,10 @@ def generateCloudbuildYaml(cloudbuildTemplateResourcePath, stepsTemplateResource
     echo "Current workspace is ${env.WORKSPACE}"
 
     // Write the templates to the workspace using libraryResource
-    def cloudbuildTemplateContent = libraryResource(cloudbuildTemplateResourcePath)
-    def stepsTemplateContent = libraryResource(stepsTemplateResourcePath)
+
+    writeFile(file: "${env.WORKSPACE}/cloudbuild_template.yaml", text: libraryResource('cloudbuild_template.yaml'))
+    writeFile(file: "${env.WORKSPACE}/steps_cloudbuild_template.yaml", text: libraryResource('steps_cloudbuild_template.yaml'))
     
-    writeFile(file: "${env.WORKSPACE}/cloudbuild_template.yaml", text: cloudbuildTemplateContent)
-    writeFile(file: "${env.WORKSPACE}/steps_cloudbuild_template.yaml", text: stepsTemplateContent)
 
     def cloudbuildTemplate = readFile("${env.WORKSPACE}/cloudbuild_template.yaml")
     def stepsTemplate = readFile("${env.WORKSPACE}/steps_cloudbuild_template.yaml")
