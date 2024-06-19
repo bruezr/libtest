@@ -2,14 +2,14 @@ def generateCloudbuildYaml(cloudbuildTemplateResourcePath, stepsTemplateResource
     echo "Current workspace is ${env.WORKSPACE}"
 
     // Write the templates to the workspace using libraryResource
-    writeFile(file: "${env.WORKSPACE}/cloudbuild_template.yaml", text: libraryResource('cloudbuild_template.yaml'))
-    writeFile(file: "${env.WORKSPACE}/steps_cloudbuild_template.yaml", text: libraryResource('steps_cloudbuild_template.yaml'))
+    def cloudbuildTemplateContent = libraryResource(cloudbuildTemplateResourcePath)
+    def stepsTemplateContent = libraryResource(stepsTemplateResourcePath)
+    
+    writeFile(file: "${env.WORKSPACE}/cloudbuild_template.yaml", text: cloudbuildTemplateContent)
+    writeFile(file: "${env.WORKSPACE}/steps_cloudbuild_template.yaml", text: stepsTemplateContent)
 
-    def cloudbuildTemplatePath = "${env.WORKSPACE}/cloudbuild_template.yaml"
-    def stepsTemplatePath = "${env.WORKSPACE}/steps_cloudbuild_template.yaml"
-
-    def cloudbuildTemplate = new File(cloudbuildTemplatePath).text
-    def stepsTemplate = new File(stepsTemplatePath).text
+    def cloudbuildTemplate = readFile("${env.WORKSPACE}/cloudbuild_template.yaml")
+    def stepsTemplate = readFile("${env.WORKSPACE}/steps_cloudbuild_template.yaml")
 
     // Initialize a StringBuilder to hold the generated steps
     def generatedSteps = new StringBuilder()
@@ -27,12 +27,11 @@ def generateCloudbuildYaml(cloudbuildTemplateResourcePath, stepsTemplateResource
     def finalContent = cloudbuildTemplate.replace('${TEMPLATE_STEP}', generatedSteps.toString().trim())
 
     // Write the final content to the output file
-    new File(outputPath).text = finalContent
+    writeFile(file: outputPath, text: finalContent)
 
-    println "Generated YAML file:"
-    println finalContent
+    echo "Generated YAML file:"
+    echo finalContent
 }
-
 
 /* // Example usage
 def stepsData = [
